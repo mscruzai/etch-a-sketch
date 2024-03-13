@@ -15,7 +15,11 @@ function createGrid(size){
         for(let j=0; j < size; j++){
             rowCell = document.createElement("div");
             rowCell.classList.add("cell");
-            rowCell.textContent = "A";
+            rowCell.addEventListener("mouseover",
+                (theEvent) => {
+                    theEvent.target.style.background = "black";
+                }
+            );
             gridRow.appendChild(rowCell);
         }
         canvasDiv.appendChild(gridRow);
@@ -24,3 +28,7 @@ function createGrid(size){
 
 let gridSize = 16; //prompt("Please enter grid size:");
 createGrid(gridSize);
+
+function chgCellColor(color){
+
+}
