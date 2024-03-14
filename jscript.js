@@ -1,7 +1,8 @@
 
 const MAXSIZE = 100;
+const DEFAULTSIZE = 16;
 
-const canvasDiv = document.querySelector('.canvas');
+const canvasContainer = document.querySelector('.canvas');
 
 function createGrid(size){
 
@@ -22,13 +23,30 @@ function createGrid(size){
             );
             gridRow.appendChild(rowCell);
         }
-        canvasDiv.appendChild(gridRow);
+        canvasContainer.appendChild(gridRow);
     }
 }
 
-let gridSize = 16; //prompt("Please enter grid size:");
+let gridSize = DEFAULTSIZE; //prompt("Please enter grid size:");
 createGrid(gridSize);
 
-function chgCellColor(color){
-
-}
+const gridSizBtn = document.querySelector("#gridSizButton");
+gridSizBtn.addEventListener("click",
+    () => {
+        let newGridSize = prompt("Enter size of grid)");
+        if(Number.isInteger(parseInt(newGridSize)) && newGridSize > 0){
+            if(newGridSize > MAXSIZE){
+                alert("Only max size of 100 is allowed");
+                gridSize = MAXSIZE;
+            } else {
+            gridSize = newGridSize;
+            canvasContainer.replaceChildren();
+            createGrid(gridSize);
+            }
+        } else if(newGridSize==null){
+            alert("No new size set");
+        } else {
+            alert("Invalid size");
+        } 
+    }
+)
