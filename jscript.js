@@ -23,6 +23,8 @@ function createGrid(size){
                         theEvent.target.style.background = 'black';
                     } else if(sketchMode == 'randomRGB'){
                         theEvent.target.style.background = rndRGB();
+                    } else if(sketchMode == 'grayscale') {
+                        
                     } else {
                         alert('Invalid sketch mode!');
                     }  
@@ -79,4 +81,10 @@ blkBtn.addEventListener('click' ,
     }
 );
 
+const grayBtn = document.querySelector("#grayscale-button");
+grayBtn.addEventListener('click' ,
+    () => {
+        sketchMode = 'grayscale';
+    }
+);
 
