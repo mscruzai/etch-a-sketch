@@ -2,6 +2,8 @@
 const MAXSIZE = 100;
 const DEFAULTSIZE = 16;
 
+let sketchMode = 'black';
+
 const canvasContainer = document.querySelector('.canvas');
 
 function createGrid(size){
@@ -17,7 +19,13 @@ function createGrid(size){
             rowCell.classList.add("cell");
             rowCell.addEventListener("mouseover",
                 (theEvent) => {
-                    theEvent.target.style.background = "black";
+                    if(sketchMode == 'black') {
+                        theEvent.target.style.background = 'black';
+                    } else if(sketchMode == 'randomRGB'){
+                        theEvent.target.style.background = rndRGB();
+                    } else {
+                        alert('Invalid sketch mode!');
+                    }  
                 }
             );
             gridRow.appendChild(rowCell);
@@ -48,5 +56,27 @@ gridSizBtn.addEventListener("click",
             alert("Invalid size");
         } 
     }
-)
+);
+
+const rndRGB = () => {
+    let r = Math.floor(Math.random() * 256); 
+    let g = Math.floor(Math.random() * 256); 
+    let b = Math.floor(Math.random() * 256); 
+    return `rgb(${[r,g,b].join(',')})`;
+};
+
+const rgbBtn = document.querySelector("#rgb-button");
+rgbBtn.addEventListener('click' ,
+    () => {
+        sketchMode = 'randomRGB';
+    }
+);
+
+const blkBtn = document.querySelector("#black-button");
+blkBtn.addEventListener('click' ,
+    () => {
+        sketchMode = 'black';
+    }
+);
+
 
