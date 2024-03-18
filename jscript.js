@@ -6,6 +6,9 @@ let sketchMode = 'black';
 
 const canvasContainer = document.querySelector('.canvas');
 
+const grayColorVal = 220;
+let darkenAmount = Math.ceil(grayColorVal / 9);
+
 function createGrid(size){
 
     let gridRow;
@@ -24,6 +27,17 @@ function createGrid(size){
                     } else if(sketchMode == 'randomRGB'){
                         theEvent.target.style.background = rndRGB();
                     } else if(sketchMode == 'grayscale') {
+                        //const computedStyle = getComputedStyle(theEvent.target);
+                        gridColor = theEvent.target.style['background-color'];
+                        if(!gridColor){ //not colored yet
+                            theEvent.target.style.background = `rgb(${grayColorVal}, ${grayColorVal}, ${grayColorVal})`;
+                        } else {
+                            const [r, g, b] = gridColor.match(/\d+/g);
+                            const newR = r - darkenAmount;
+                            const newG = g - darkenAmount;
+                            const newB = b - darkenAmount;
+                            theEvent.target.style.background = `rgb(${newR}, ${newG},${newB})`;
+                        }
                         
                     } else {
                         alert('Invalid sketch mode!');
