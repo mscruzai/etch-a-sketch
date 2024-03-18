@@ -39,7 +39,11 @@ h1 {
 #settings-container {
   display: flex;
   justify-content:space-around;
-  padding: 0px 32px;
+  padding: 8px 32px;
+}
+
+#settings-container .button {
+  width: 25%;
 }
 
 .canvas {
@@ -49,6 +53,7 @@ h1 {
   width: 960px;
   height: 960px;
   margin: 32px;
+  border: 1px solid blue;
 }
 
 .row {
@@ -60,7 +65,4 @@ h1 {
 .cell {
   display: flex;
   flex: 1;
-  border: 1px solid blue;
-  color: black;
-  font-size: 100%;
 }
