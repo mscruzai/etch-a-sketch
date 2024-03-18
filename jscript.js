@@ -7,7 +7,7 @@ let sketchMode = 'black';
 const canvasContainer = document.querySelector('.canvas');
 
 const grayColorVal = 220;
-let darkenAmount = Math.ceil(grayColorVal / 9);
+let darkenAmount = Math.ceil(grayColorVal / 10);
 
 function createGrid(size){
 
@@ -80,6 +80,14 @@ const rndRGB = () => {
     let b = Math.floor(Math.random() * 256); 
     return `rgb(${[r,g,b].join(',')})`;
 };
+
+const resetBtn = document.querySelector("#reset-button");
+resetBtn.addEventListener('click' ,
+    () => {
+        canvasContainer.replaceChildren();
+        createGrid(gridSize);
+    }
+);
 
 const rgbBtn = document.querySelector("#rgb-button");
 rgbBtn.addEventListener('click' ,
